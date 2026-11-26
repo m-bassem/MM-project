@@ -213,7 +213,7 @@ st.markdown(
     <div class="hero">
         <div class="eyebrow">Creative media workspace</div>
         <h1>Multimedia Project</h1>
-        <p><h2> Dr.Abd Elmounem Ali _ <h3> Dr.Abanoub Farid </h3> </h2> </p>
+        <br><h2> Dr.Abd Elmounem Ali <h3> Dr.Abanoub Farid </h3> </h2></br>
         <p>image processing, audio analysis, frequency transforms and video previews</p>
     </div>
     """,
