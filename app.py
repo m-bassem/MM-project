@@ -217,14 +217,27 @@ st.markdown(
         opacity: .65;
     }}
     [data-testid="stTextInput"] [data-baseweb="input"],
-    [data-baseweb="select"] > div, [data-baseweb="base-input"] {{
+    [data-testid="stTextInput"] [data-baseweb="base-input"],
+    [data-baseweb="select"] > div,
+    [data-baseweb="base-input"] {{
         background: var(--field) !important;
         border: 1px solid {theme["field_border"]} !important;
         border-radius: 12px !important;
         color: var(--ink) !important;
     }}
-    [data-testid="stTextInput"] input {{
+    [data-testid="stTextInput"] input,
+    [data-testid="stTextInput"] textarea,
+    input[data-testid="stTextInput"],
+    input, textarea {{
         background: transparent !important;
+        color: var(--ink) !important;
+        -webkit-text-fill-color: var(--ink) !important;
+        caret-color: var(--ink) !important;
+        opacity: 1 !important;
+    }}
+    [data-testid="stTextInput"] *,
+    [data-testid="stTextInput"] [data-baseweb="input"] *,
+    [data-testid="stTextInput"] [data-baseweb="base-input"] * {{
         color: var(--ink) !important;
         -webkit-text-fill-color: var(--ink) !important;
     }}
@@ -318,8 +331,8 @@ st.markdown(
     <div class="hero">
         <div class="eyebrow">Creative media workspace</div>
         <h1>Multimedia Project</h1>
-        <h2> Dr.Abd Elmounem Ali . <h3> Dr.Abanoub Farid </h3> </h2> 
-        <p>image processing, audio analysis, frequency transforms and video previews</p>
+        <p class="hero-name">Dr.Abd Elmounem Ali · Dr.Abanoub Farid</p>
+        <p>Image processing, audio analysis, frequency transforms and video previews</p>
     </div>
     """,
     unsafe_allow_html=True,
