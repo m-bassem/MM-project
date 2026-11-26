@@ -52,7 +52,7 @@ theme = {
     "line": "#303a46",
     "field": "#20262e",
     "field_border": "#465464",
-    "tab": "#1d232b",
+    "tab": "#94a9c461",
     "tab_active": "#2b3744",
     "hero": "linear-gradient(120deg, #a836cb, #263746)",
     "button": "#252d36",
