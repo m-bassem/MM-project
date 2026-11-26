@@ -43,6 +43,67 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
+dark_mode = st.toggle(
+    "الوضع الليلي",
+    value=st.session_state.get("dark_mode", False),
+    key="dark_mode",
+)
+
+if dark_mode:
+    theme = {
+        "page": "#12161b",
+        "surface": "#1b2026",
+        "surface_alt": "#20262e",
+        "ink": "#f4f7fb",
+        "muted": "#b8c3d1",
+        "line": "#303a46",
+        "field": "#20262e",
+        "field_border": "#465464",
+        "tab": "#1d232b",
+        "tab_active": "#2b3744",
+        "hero": "linear-gradient(120deg, #182430, #263746)",
+        "button": "#252d36",
+        "button_primary": "#31699c",
+        "plot_face": "#171c22",
+        "plot_axes": "#20262e",
+        "plot_grid": "#465464",
+        "plot_text": "#f4f7fb",
+    }
+else:
+    theme = {
+        "page": "#ffffff",
+        "surface": "#ffffff",
+        "surface_alt": "#f7f9fc",
+        "ink": "#172b45",
+        "muted": "#64758b",
+        "line": "#dfe6ef",
+        "field": "#ffffff",
+        "field_border": "#b9c6d5",
+        "tab": "#eaf0f7",
+        "tab_active": "#ffffff",
+        "hero": "linear-gradient(120deg, #17365d, #2864a0)",
+        "button": "#ffffff",
+        "button_primary": "#2864a0",
+        "plot_face": "#ffffff",
+        "plot_axes": "#ffffff",
+        "plot_grid": "#dfe6ef",
+        "plot_text": "#172b45",
+    }
+
+plt.rcParams.update(
+    {
+        "figure.facecolor": theme["plot_face"],
+        "axes.facecolor": theme["plot_axes"],
+        "axes.edgecolor": theme["muted"],
+        "axes.labelcolor": theme["ink"],
+        "axes.titlecolor": theme["ink"],
+        "xtick.color": theme["ink"],
+        "ytick.color": theme["ink"],
+        "text.color": theme["plot_text"],
+        "grid.color": theme["plot_grid"],
+    }
+)
+
 IMAGE_OPERATIONS = [
     "Convert to Grayscale",
     "Equalize Histogram",
@@ -58,253 +119,165 @@ TEAM_MEMBERS: tuple[str, str] = ("Mohamed Bassem Mohamed", "Mohamed Kamel Elsaye
 
 
 st.markdown(
-    """
+    f"""
     <style>
-    :root {
-        --ink: #f4f7fb;
-        --muted: #b8c3d1;
-        --blue: #78aee3;
-        --line: #303a46;
-        --surface: #20262e;
-        --surface-2: #171c22;
-        --surface-3: #2a323d;
-    }
-    html, body,
-    [data-testid="stAppViewContainer"],
-    [data-testid="stMain"],
-    .stApp,
-    .main {
-        background: #12161b !important;
-        color: #f4f7fb !important;
-    }
-    .stApp {
-        background: #12161b;
+    :root {{
+        --page: {theme["page"]};
+        --ink: {theme["ink"]};
+        --muted: {theme["muted"]};
+        --line: {theme["line"]};
+        --surface: {theme["surface"]};
+        --field: {theme["field"]};
+    }}
+    html, body, [data-testid="stAppViewContainer"], [data-testid="stMain"],
+    .stApp, .main {{
+        background: var(--page) !important;
         color: var(--ink) !important;
+    }}
+    .stApp {{
         font-family: "Segoe UI", "Arial Rounded MT Bold", sans-serif;
-    }
-    [data-testid="stHeader"] {
-        background: #12161b !important;
-        color: #ffffff !important;
-    }
-    [data-testid="stToolbar"] { color: #ffffff !important; }
-    [data-testid="stMainBlockContainer"] {
+    }}
+    [data-testid="stHeader"], [data-testid="stToolbar"] {{
+        background: var(--page) !important;
+        color: var(--ink) !important;
+    }}
+    [data-testid="stMainBlockContainer"] {{
         max-width: 1440px;
         padding-top: 1.8rem;
         padding-bottom: 3rem;
-    }
-    .stApp h1, .stApp h2, .stApp h3, .stApp h4,
-    .stApp h5, .stApp h6,
+    }}
+    .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6,
     [data-testid="stMarkdownContainer"] h1,
     [data-testid="stMarkdownContainer"] h2,
     [data-testid="stMarkdownContainer"] h3,
     [data-testid="stMarkdownContainer"] h4,
     [data-testid="stMarkdownContainer"] p,
     [data-testid="stMarkdownContainer"] li,
-    [data-testid="stMarkdownContainer"] span {
-        color: #f4f7fb !important;
-    }
+    [data-testid="stMarkdownContainer"] span,
     .stApp p, .stApp label, .stApp caption,
-    [data-testid="stCaptionContainer"],
-    [data-testid="stWidgetLabel"] p,
-    [data-testid="stTextInput"] label {
-        color: #d7dee8 !important;
-    }
-    [data-testid="stCaptionContainer"] p,
-    .section-note {
-        color: var(--muted) !important;
-    }
-    .hero {
-        background: linear-gradient(120deg, #182430, #263746);
-        border: 1px solid #354558;
+    [data-testid="stWidgetLabel"] p {{
+        color: var(--ink) !important;
+    }}
+    [data-testid="stCaptionContainer"], [data-testid="stCaptionContainer"] p,
+    .section-note {{ color: var(--muted) !important; }}
+    .hero {{
+        background: {theme["hero"]};
+        border: 1px solid {theme["line"]};
         border-radius: 24px;
         color: #fff;
         padding: 28px 34px;
         margin-bottom: 20px;
-        box-shadow: 0 16px 38px rgba(0, 0, 0, .28);
-    }
-    .hero h1 {
-        color: #fff;
-        font-size: clamp(2rem, 3.2vw, 2.8rem);
-        letter-spacing: -.04em;
-        margin: 0;
-    }
-    .hero p {
-        color: #d7e5f4;
-        font-size: 1.02rem;
-        margin: 8px 0 0;
-    }
-    .eyebrow {
-        color: #bad6f2;
-        font-size: .78rem;
-        font-weight: 800;
-        letter-spacing: .14em;
-        margin-bottom: 8px;
-        text-transform: uppercase;
-    }
-    .feature-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin: 12px 0 18px;
-    }
-    .feature-pill {
-        background: #252d36;
-        border: 1px solid #3a4654;
+        box-shadow: 0 16px 38px rgba(0, 0, 0, .12);
+    }}
+    .hero h1, .hero h2, .hero h3, .hero p, .eyebrow {{ color: #fff !important; }}
+    .feature-list {{ display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 18px; }}
+    .feature-pill {{
+        background: {theme["surface_alt"]};
+        border: 1px solid {theme["line"]};
         border-radius: 999px;
-        color: #d9e7f5;
+        color: {theme["ink"]};
         display: inline-block;
         font-size: .82rem;
         font-weight: 650;
         padding: 6px 12px;
-    }
-    .section-note {
-        color: var(--muted);
-        margin-top: -6px;
-    }
-    div[data-testid="stTabs"] button[role="tab"] {
-        background: #1d232b;
-        border: 1px solid #343f4b;
+    }}
+    div[data-testid="stTabs"] button[role="tab"] {{
+        background: {theme["tab"]};
+        border: 1px solid {theme["line"]};
         border-radius: 13px;
-        color: #dce5ef;
+        color: {theme["ink"]};
         font-weight: 700;
         margin-right: 7px;
         padding: 9px 16px;
-    }
-    div[data-testid="stTabs"] button[role="tab"][aria-selected="true"] {
-        background: #2b3744;
-        border-color: #4c6175;
-        color: #ffffff;
-        box-shadow: 0 5px 16px rgba(0, 0, 0, .20);
-    }
+    }}
+    div[data-testid="stTabs"] button[role="tab"][aria-selected="true"] {{
+        background: {theme["tab_active"]};
+        border-color: {theme["field_border"]};
+        color: {theme["ink"]};
+    }}
     div[data-testid="stTabs"] button[role="tab"] p,
-    div[data-testid="stTabs"] button[role="tab"][aria-selected="true"] p {
-        color: #f4f7fb !important;
-    }
-    .stButton button, .stDownloadButton button {
-        background: #252d36 !important;
-        color: #ffffff !important;
-        border: 1px solid #465464 !important;
+    div[data-testid="stTabs"] button[role="tab"][aria-selected="true"] p {{
+        color: {theme["ink"]} !important;
+    }}
+    .stButton button, .stDownloadButton button {{
+        background: {theme["button"]} !important;
+        color: {theme["ink"]} !important;
+        border: 1px solid {theme["field_border"]} !important;
         border-radius: 12px;
         font-weight: 700;
         min-height: 42px;
-    }
-    .stButton button[kind="primary"],
-    .stDownloadButton button[kind="primary"] {
-        background: #31699c !important;
-        border-color: #4e87b7 !important;
-    }
-    .stButton button:hover, .stDownloadButton button:hover {
-        border-color: #79aada !important;
-        color: #ffffff !important;
-    }
-    .stButton button:disabled, .stDownloadButton button:disabled {
-        background: #1d2329 !important;
-        color: #7f8995 !important;
-        border-color: #303841 !important;
-    }
-    [data-testid="stTextInput"] label,
-    [data-testid="stWidgetLabel"] p {
-        color: #dce5ef !important;
-        font-weight: 650;
-    }
-    [data-testid="stTextInput"] [data-baseweb="input"] {
-        background: #20262e !important;
-        border: 1px solid #465464 !important;
+    }}
+    .stButton button[kind="primary"], .stDownloadButton button[kind="primary"] {{
+        background: {theme["button_primary"]} !important;
+        color: #fff !important;
+        border-color: {theme["button_primary"]} !important;
+    }}
+    .stButton button:disabled, .stDownloadButton button:disabled {{
+        color: {theme["muted"]} !important;
+        opacity: .65;
+    }}
+    [data-testid="stTextInput"] [data-baseweb="input"],
+    [data-baseweb="select"] > div, [data-baseweb="base-input"] {{
+        background: var(--field) !important;
+        border: 1px solid {theme["field_border"]} !important;
         border-radius: 12px !important;
-    }
-    [data-testid="stTextInput"] input {
+        color: var(--ink) !important;
+    }}
+    [data-testid="stTextInput"] input {{
         background: transparent !important;
-        color: #ffffff !important;
-        -webkit-text-fill-color: #ffffff !important;
-    }
-    [data-testid="stTextInput"] input::placeholder {
-        color: #aeb8c5 !important;
-        opacity: 1;
-    }
-    div[data-testid="stFileUploader"] section {
-        background: #1b2026;
-        border: 1px dashed #526174;
+        color: var(--ink) !important;
+        -webkit-text-fill-color: var(--ink) !important;
+    }}
+    [data-testid="stTextInput"] input::placeholder {{
+        color: var(--muted) !important;
+    }}
+    [data-baseweb="select"] span, [data-baseweb="menu"] *,
+    [data-testid="stRadio"] label, [data-testid="stCheckbox"] label,
+    [data-testid="stSlider"] label {{
+        color: var(--ink) !important;
+    }}
+    [data-baseweb="menu"], [data-baseweb="popover"] {{
+        background: var(--field) !important;
+    }}
+    [role="option"][aria-selected="true"], [role="option"]:hover {{
+        background: {theme["surface_alt"]} !important;
+    }}
+    div[data-testid="stFileUploader"] section {{
+        background: var(--field);
+        border: 1px dashed {theme["field_border"]};
         border-radius: 15px;
-        color: #e7edf5;
-    }
-    div[data-testid="stFileUploader"] section * {
-        color: #e7edf5 !important;
-    }
-    [data-baseweb="select"] > div,
-    [data-baseweb="base-input"] {
-        background: #20262e !important;
-        color: #ffffff !important;
-        border-color: #465464 !important;
-    }
-    [data-baseweb="select"] span,
-    [data-baseweb="menu"] * {
-        color: #f4f7fb !important;
-    }
-    [data-baseweb="menu"] {
-        background: #20262e !important;
-    }
-    [role="option"][aria-selected="true"],
-    [role="option"]:hover {
-        background: #303c49 !important;
-    }
-    [data-testid="stRadio"] label,
-    [data-testid="stCheckbox"] label,
-    [data-testid="stSlider"] label {
-        color: #dce5ef !important;
-    }
-    [data-testid="stRadio"] div[role="radiogroup"] label span,
-    [data-testid="stCheckbox"] label span {
-        color: #dce5ef !important;
-    }
-    [data-testid="stSlider"] [data-baseweb="slider"] div {
-        background-color: #465464 !important;
-    }
-    div[data-testid="stMetric"] {
-        background: #20262e;
+        color: var(--ink);
+    }}
+    div[data-testid="stFileUploader"] section * {{ color: var(--ink) !important; }}
+    div[data-testid="stMetric"] {{
+        background: var(--surface);
         border: 1px solid var(--line);
         border-radius: 15px;
         padding: 14px 16px;
-        color: #ffffff;
-    }
-    [data-testid="stMetricLabel"],
-    [data-testid="stMetricLabel"] p,
-    [data-testid="stMetricValue"] {
-        color: #f4f7fb !important;
-    }
-    div[data-testid="stVerticalBlockBorderWrapper"] {
-        background: #1b2026;
-        border-color: var(--line);
+    }}
+    [data-testid="stMetricLabel"], [data-testid="stMetricLabel"] p,
+    [data-testid="stMetricValue"] {{ color: var(--ink) !important; }}
+    div[data-testid="stVerticalBlockBorderWrapper"],
+    [data-testid="stExpander"], [data-testid="stExpander"] details,
+    [data-testid="stExpander"] summary {{
+        background: var(--surface) !important;
+        border-color: var(--line) !important;
+        color: var(--ink) !important;
         border-radius: 18px;
-    }
-    [data-testid="stExpander"],
-    [data-testid="stExpander"] details,
-    [data-testid="stExpander"] summary {
-        background: #1b2026 !important;
-        color: #f4f7fb !important;
-        border-color: #303a46 !important;
-    }
-    [data-testid="stDataFrame"],
-    [data-testid="stDataFrame"] * {
-        color: #f4f7fb !important;
-    }
-    [data-testid="stAlert"],
-    [data-testid="stNotification"] {
-        background: #20262e !important;
-        color: #f4f7fb !important;
-        border: 1px solid #465464 !important;
-    }
-    [data-testid="stSidebar"],
-    [data-testid="stSidebar"] > div {
-        background: #171c22 !important;
-        color: #f4f7fb !important;
-    }
-    [data-testid="stSidebar"] * {
-        color: #f4f7fb !important;
-    }
-    ::-webkit-scrollbar { width: 10px; height: 10px; }
-    ::-webkit-scrollbar-track { background: #12161b; }
-    ::-webkit-scrollbar-thumb { background: #3a4654; border-radius: 8px; }
-    ::-webkit-scrollbar-thumb:hover { background: #4c5c6d; }
+    }}
+    [data-testid="stAlert"], [data-testid="stNotification"] {{
+        background: var(--surface) !important;
+        color: var(--ink) !important;
+        border: 1px solid var(--line) !important;
+    }}
+    [data-testid="stSidebar"], [data-testid="stSidebar"] > div {{
+        background: var(--surface) !important;
+        color: var(--ink) !important;
+    }}
+    [data-testid="stSidebar"] * {{ color: var(--ink) !important; }}
+    ::-webkit-scrollbar {{ width: 10px; height: 10px; }}
+    ::-webkit-scrollbar-track {{ background: var(--page); }}
+    ::-webkit-scrollbar-thumb {{ background: {theme["field_border"]}; border-radius: 8px; }}
     </style>
     """,
     unsafe_allow_html=True,
@@ -749,6 +722,6 @@ with video_tab:
 
 
 st.markdown(
-    '<p style="color:#c0cad6;text-align:center;padding-top:24px;">Multimedia Studio · Image, audio and video tools</p>',
+    f'<p style="color:{theme["muted"]};text-align:center;padding-top:24px;">Multimedia Studio · Image, audio and video tools</p>',
     unsafe_allow_html=True,
 )
