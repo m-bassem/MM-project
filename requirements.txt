@@ -1,6 +1,7 @@
 streamlit>=1.50
 numpy
-opencv-python-headlessPillow
+opencv-python-headless
+Pillow
 matplotlib
 scipy
 PyWavelets
