@@ -44,19 +44,19 @@ st.set_page_config(
 )
 
 theme = {
-    "page": "#12161b",
+    "page": "#161f29",
     "surface": "#1b2026",
     "surface_alt": "#20262e",
     "ink": "#f4f7fb",
     "muted": "#b8c3d1",
     "line": "#303a46",
-    "field": "#20262e",
+    "field": "#939ba5",
     "field_border": "#465464",
     "tab": "#1d232b",
     "tab_active": "#2b3744",
     "hero": "linear-gradient(120deg, #182430, #263746)",
     "button": "#252d36",
-    "button_primary": "#31699c",
+    "button_primary": "#28bed8",
     "plot_face": "#171c22",
     "plot_axes": "#20262e",
     "plot_grid": "#465464",
