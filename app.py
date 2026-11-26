@@ -57,7 +57,7 @@ theme = {
     "hero": "linear-gradient(120deg, #182430, #263746)",
     "button": "#252d36",
     "button_primary": "#28bed8",
-    "plot_face": "#171c22",
+    "plot_face": "#afc7e5",
     "plot_axes": "#20262e",
     "plot_grid": "#465464",
     "plot_text": "#f4f7fb",
