@@ -45,8 +45,8 @@ st.set_page_config(
 
 theme = {
     "page": "#161f29",
-    "surface": "#1b2026",
-    "surface_alt": "#20262e",
+    "surface": "#9e47e9",
+    "surface_alt": "#2b202e",
     "ink": "#f4f7fb",
     "muted": "#b8c3d1",
     "line": "#303a46",
