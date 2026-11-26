@@ -39,6 +39,8 @@ IMAGE_OPERATIONS = [
     "Center Crop",
     "Adjust Brightness & Contrast",
 ]
+# Fixed team names are defined here.
+TEAM_MEMBERS: tuple[str, str] = ("Mohamed Bassem", "Mohamed Kamel")
 
 
 st.markdown(
@@ -219,21 +221,16 @@ st.markdown(
 
 with st.container(border=True):
     st.markdown("### Team members")
-    st.caption("Enter names in these fields. Your names stay in this browser session.")
-    member_columns = st.columns(2)
-    member_names: list[str] = []
-    for index, column in enumerate(member_columns, start=1):
+    st.caption("Team member names are fixed for this project.")
+    member_columns = st.columns(len(TEAM_MEMBERS))
+    for index, (column, name) in enumerate(zip(member_columns, TEAM_MEMBERS), start=1):
         with column:
-            member_names.append(
-                st.text_input(
-                    f"Member {index}",
-                    placeholder=f"Enter member {index}'s name",
-                    key=f"team_member_{index}",
-                )
+            st.text_input(
+                f"Member {index}",
+                value=name,
+                disabled=True,
+                key=f"fixed_team_member_{index}",
             )
-    filled_members = [name.strip() for name in member_names if name.strip()]
-    if filled_members:
-        st.caption("Team: " + " · ".join(filled_members))
 
 image_tab, audio_tab, transform_tab, video_tab = st.tabs(
     ["🖼️  Image Editing", "🎵  Audio Analysis", "〰️  DCT / DFT / Wavelet", "🎞️  Video & Collage"]
