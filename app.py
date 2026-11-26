@@ -43,52 +43,25 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-dark_mode = st.toggle(
-    "الوضع الليلي",
-    value=st.session_state.get("dark_mode", False),
-    key="dark_mode",
-)
-
-if dark_mode:
-    theme = {
-        "page": "#12161b",
-        "surface": "#1b2026",
-        "surface_alt": "#20262e",
-        "ink": "#f4f7fb",
-        "muted": "#b8c3d1",
-        "line": "#303a46",
-        "field": "#20262e",
-        "field_border": "#465464",
-        "tab": "#1d232b",
-        "tab_active": "#2b3744",
-        "hero": "linear-gradient(120deg, #182430, #263746)",
-        "button": "#252d36",
-        "button_primary": "#31699c",
-        "plot_face": "#171c22",
-        "plot_axes": "#20262e",
-        "plot_grid": "#465464",
-        "plot_text": "#f4f7fb",
-    }
-else:
-    theme = {
-        "page": "#ffffff",
-        "surface": "#ffffff",
-        "surface_alt": "#f7f9fc",
-        "ink": "#172b45",
-        "muted": "#64758b",
-        "line": "#dfe6ef",
-        "field": "#ffffff",
-        "field_border": "#b9c6d5",
-        "tab": "#eaf0f7",
-        "tab_active": "#ffffff",
-        "hero": "linear-gradient(120deg, #17365d, #2864a0)",
-        "button": "#ffffff",
-        "button_primary": "#2864a0",
-        "plot_face": "#ffffff",
-        "plot_axes": "#ffffff",
-        "plot_grid": "#dfe6ef",
-        "plot_text": "#172b45",
-    }
+theme = {
+    "page": "#12161b",
+    "surface": "#1b2026",
+    "surface_alt": "#20262e",
+    "ink": "#f4f7fb",
+    "muted": "#b8c3d1",
+    "line": "#303a46",
+    "field": "#20262e",
+    "field_border": "#465464",
+    "tab": "#1d232b",
+    "tab_active": "#2b3744",
+    "hero": "linear-gradient(120deg, #182430, #263746)",
+    "button": "#252d36",
+    "button_primary": "#31699c",
+    "plot_face": "#171c22",
+    "plot_axes": "#20262e",
+    "plot_grid": "#465464",
+    "plot_text": "#f4f7fb",
+}
 
 plt.rcParams.update(
     {
